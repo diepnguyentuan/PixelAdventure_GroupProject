@@ -59,19 +59,19 @@ public class PlayerMovement : MonoBehaviour
     // Khi va chạm với vật thể có Collider (như Quái, Bẫy)
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Kiểm tra nếu vật va chạm có Tag là "Trap" hoặc "Enemy"
-        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Trap"))
         {
-            Die();
+            // Gọi sang script máu để trừ 1 máu
+            GetComponent<PlayerHealth>().TakeDamage(1);
         }
     }
 
     // Một số bẫy dùng Trigger (đi xuyên qua mới chết), dùng hàm này
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Trap"))
         {
-            Die();
+            GetComponent<PlayerHealth>().TakeDamage(1);
         }
     }
 
