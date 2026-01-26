@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemCollec : MonoBehaviour
 {
@@ -18,6 +18,14 @@ public class ItemCollec : MonoBehaviour
             fruitCount++;
             Destroy(collision.gameObject);
             Debug.Log("Fruits collected: " + fruitCount);
+            if (LevelManager.instance != null)
+            {
+                LevelManager.instance.AddFruit();
+            }
+            else
+            {
+                Debug.LogError("Chưa có LevelManager trong Scene hoặc chưa gắn script!");
+            }
         }
     }
 }
